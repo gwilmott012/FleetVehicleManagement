@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.VehicleGridView = new System.Windows.Forms.DataGridView();
             this.txt_OutPut = new System.Windows.Forms.TextBox();
             this.VehicleMake = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VehicleRegistration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.VehicleRequireService = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AddFuel = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.AddRental = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.AddJourney = new System.Windows.Forms.DataGridViewButtonColumn();
             this.AddService = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.VehicleGridView)).BeginInit();
             this.SuspendLayout();
@@ -50,7 +50,7 @@
             this.VehicleRegistration,
             this.VehicleRequireService,
             this.AddFuel,
-            this.AddRental,
+            this.AddJourney,
             this.AddService});
             this.VehicleGridView.Location = new System.Drawing.Point(22, 38);
             this.VehicleGridView.Name = "VehicleGridView";
@@ -77,15 +77,15 @@
             // 
             // VehicleRegistration
             // 
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.VehicleRegistration.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.VehicleRegistration.DefaultCellStyle = dataGridViewCellStyle1;
             this.VehicleRegistration.HeaderText = "Registration No";
             this.VehicleRegistration.Name = "VehicleRegistration";
             // 
             // VehicleRequireService
             // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.VehicleRequireService.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.VehicleRequireService.DefaultCellStyle = dataGridViewCellStyle2;
             this.VehicleRequireService.HeaderText = "Requires a Service";
             this.VehicleRequireService.Name = "VehicleRequireService";
             this.VehicleRequireService.Width = 90;
@@ -99,14 +99,14 @@
             this.AddFuel.UseColumnTextForButtonValue = true;
             this.AddFuel.Width = 95;
             // 
-            // AddRental
+            // AddJourney
             // 
-            this.AddRental.HeaderText = "";
-            this.AddRental.Name = "AddRental";
-            this.AddRental.ReadOnly = true;
-            this.AddRental.Text = "Add Rental";
-            this.AddRental.UseColumnTextForButtonValue = true;
-            this.AddRental.Width = 95;
+            this.AddJourney.HeaderText = "";
+            this.AddJourney.Name = "AddJourney";
+            this.AddJourney.ReadOnly = true;
+            this.AddJourney.Text = "Add Journey";
+            this.AddJourney.UseColumnTextForButtonValue = true;
+            this.AddJourney.Width = 95;
             // 
             // AddService
             // 
@@ -140,7 +140,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn VehicleRegistration;
         private System.Windows.Forms.DataGridViewTextBoxColumn VehicleRequireService;
         private System.Windows.Forms.DataGridViewButtonColumn AddFuel;
-        private System.Windows.Forms.DataGridViewButtonColumn AddRental;
+        private System.Windows.Forms.DataGridViewButtonColumn AddJourney;
         private System.Windows.Forms.DataGridViewButtonColumn AddService;
     }
 }

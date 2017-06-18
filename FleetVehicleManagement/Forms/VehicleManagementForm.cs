@@ -1,4 +1,5 @@
-﻿using FleetVehicleManagement.Entities;
+﻿using FleetVehicleManagement.Dialogs;
+using FleetVehicleManagement.Entities;
 using FleetVehicleManagement.SeedCode;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace FleetVehicleManagement.Forms
     {
 
         public List<Vehicle> VehiclesList { get; set; }
-
+        string registrationNo;
         public VehicleManagementForm()
         {
             InitializeComponent();
@@ -53,9 +54,113 @@ namespace FleetVehicleManagement.Forms
 
         private void VehicleGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            registrationNo = VehicleGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
 
+            if (VehicleGridView.Columns[e.ColumnIndex].Name == "AddJourney")
+            {
+                Vehicle vehicle = GetVehicleForRegNumber(registrationNo);
+                if (vehicle != null)
+                {
+                    AddJourneyDialog jDialog = new AddJourneyDialog();
+
+                    bool requiresService = vehicle.RequiresService();
+                    if (requiresService == false)
+                    {
+
+
+
+                        jDialog.StartPosition = FormStartPosition.CenterParent;
+                        jDialog.ControlBox = false;
+                        jDialog.Text = String.Empty;
+
+                        jDialog.RegistrationNumber = registrationNo;
+                        DialogResult result = jDialog.ShowDialog();
+                        if (result == DialogResult.OK)
+                        {
+                            Journey newJourney = new Journey(jDialog.RentalType, jDialog.NumberDays, jDialog.KmsTravelled);
+
+
+                            {
+                                vehicle.AddJourney(newJourney);
+                                populateOutputs();
+                            }
+                        }
+
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sorry. This vehicle requires a service and cannot be rented", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            else if (VehicleGridView.Columns[e.ColumnIndex].Name == "AddFuel")
+            {
+
+                AddFuelDialog fDialog = new Dialogs.AddFuelDialog();
+
+                fDialog.StartPosition = FormStartPosition.CenterParent;
+                fDialog.ControlBox = false;
+                fDialog.Text = String.Empty;
+
+                fDialog.RegistrationNumber = registrationNo;
+                DialogResult result = fDialog.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    FuelPurchase fuelPurchase = new FuelPurchase(fDialog.FuelQuantity);
+
+                    Vehicle vehicle = GetVehicleForRegNumber(registrationNo);
+                    if (vehicle != null)
+                    {
+                        vehicle.AddFuelPurchase(fuelPurchase);
+                        populateOutputs();
+                    }
+                }
+
+
+
+
+            }
+            else if (VehicleGridView.Columns[e.ColumnIndex].Name == "AddService")
+            {
+
+                Vehicle vehicle = GetVehicleForRegNumber(registrationNo);
+                if (vehicle != null)
+                {
+                    int TotalKmsTravelled = vehicle.GetTotalKms();
+
+                    AddServiceDialog sDialog = new AddServiceDialog();
+                    sDialog.TotalKmsTravelled = TotalKmsTravelled;
+
+                    sDialog.StartPosition = FormStartPosition.CenterParent;
+                    sDialog.ControlBox = false;
+                    sDialog.Text = String.Empty;
+
+                    sDialog.RegistrationNumber = registrationNo;
+                    DialogResult result = sDialog.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        Service service = new Service(TotalKmsTravelled);
+
+                        vehicle.AddService(service);
+                        populateOutputs();
+                    }
+                }
+            }
         }
 
+
+        private Vehicle GetVehicleForRegNumber(string registrationNo)
+        {
+            foreach (var v in VehiclesList)
+            {
+                if (v.Registration==registrationNo)
+                {
+                    return v;
+                }
+            }
+            return null;
+        }
 
 
 

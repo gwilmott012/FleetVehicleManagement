@@ -47,6 +47,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants\Constants.cs" />
+    <Compile Include="Dialogs\AddFuelDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AddFuelDialog.Designer.cs">
+      <DependentUpon>AddFuelDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AddJourneyDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AddJourneyDialog.Designer.cs">
+      <DependentUpon>AddJourneyDialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\AddServiceDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AddServiceDialog.Designer.cs">
+      <DependentUpon>AddServiceDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Entities\FuelPurchase.cs" />
     <Compile Include="Entities\Service.cs" />
     <Compile Include="Entities\Vehicle.cs" />
@@ -60,6 +78,15 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SeedCode\SeedVehicles.cs" />
+    <EmbeddedResource Include="Dialogs\AddFuelDialog.resx">
+      <DependentUpon>AddFuelDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AddJourneyDialog.resx">
+      <DependentUpon>AddJourneyDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AddServiceDialog.resx">
+      <DependentUpon>AddServiceDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\VehicleManagementForm.resx">
       <DependentUpon>VehicleManagementForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -85,9 +112,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dialogs\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

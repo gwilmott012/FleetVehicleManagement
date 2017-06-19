@@ -35,6 +35,8 @@ namespace FleetVehicleManagement.Entities
 
         }
 
+		// if total kilometers minus the odometer reading is bigger than or equal to the kilometersBetweenService 
+		// returns true saying it needs a service otherwise returns false
         public bool RequiresService()
         {
             //Services are required every 100km (this is stored in contants file - kmsBetweenService)
@@ -46,6 +48,7 @@ namespace FleetVehicleManagement.Entities
             return false;
         }
 
+		// for every s in services if the odometer is bigger than the latest service odometer sets latest service odometer to the odometer
         public int GetLatestServiceOdometerReading()
         {
             int latestServiceOdometer = 0;
@@ -61,6 +64,7 @@ namespace FleetVehicleManagement.Entities
             return latestServiceOdometer;
         }
 
+		// for every j in journeys adds j.GetRevenue to total revenue and returns that to 2 decimals
         public double GetRevenue()
         {
             //Revenue can be calculated from all the Journeys.
@@ -74,11 +78,9 @@ namespace FleetVehicleManagement.Entities
             return Math.Round(totalRevenue,2);
         }
 
+		// for every f in fuelpurchases adds f.litres to litrespurchased then divides 100 by totalkms divide litrespurchased and returns that to 1 decimal
         public double GetFuelEconomy()
         {
-            //Calculated by getting the Kms travelled and divide by the Litres purchased..
-            //Now divide 100 by this number.
-            //Return as double to one decimal place (Math.Round).
             double litresPurchased = 0;
             double fuelEconomy = 0;
 
@@ -117,21 +119,25 @@ namespace FleetVehicleManagement.Entities
             return (int)(GetTotalKms() / Constants.Constants.kmsBetweenService);
         }
 
+		// adds fuelpurchase to fuelpurchases
         public void AddFuelPurchase(FuelPurchase fuelPurchase)
         {
             FuelPurchases.Add(fuelPurchase);
         }
 
-        public void AddJourney(Journey journey)
+		// adds journey to journeys
+		public void AddJourney(Journey journey)
         {
             Journeys.Add(journey);
         }
 
-        public void AddService(Service service)
+		// adds service to services
+		public void AddService(Service service)
         {
             Services.Add(service);
         }
 
+		// sets string builder to car details
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

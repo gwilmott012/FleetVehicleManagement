@@ -25,7 +25,9 @@
             KmsTravelled = _KmsTravelled;
         }
 
-        public double GetRevenue()
+		// if rental type is daily returns as an integer the number of days * the rental cost per day
+		// otherwise if rental type is perKm returns kilometers travelled * the rental cost per kilometer
+		public double GetRevenue()
         {
             if (RentalType==Rental.Daily)
             {

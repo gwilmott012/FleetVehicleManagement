@@ -31,8 +31,8 @@ namespace FleetVehicleManagement.Entities.Tests
         [TestMethod()]
         public void GetRevenueTest_DailyRental_TwoJourneys()
         {
-			// tests that two daily journeys of one day equals two * the rental cost per day
-            vehicle.AddJourney(new Journey(Journey.Rental.Daily, 1, 500));
+			// Tests that vehicle.getrevenue equals two daily journeys of one day * the rental cost per day
+			vehicle.AddJourney(new Journey(Journey.Rental.Daily, 1, 500));
             vehicle.AddJourney(new Journey(Journey.Rental.Daily, 1, 500));
 
             double revenue = vehicle.GetRevenue();
@@ -46,7 +46,7 @@ namespace FleetVehicleManagement.Entities.Tests
         [TestMethod()]
         public void GetRevenueTest_PerKmRental_OneJourney()
         {
-			// tests that one per kilometer journey of 500km equals 500 * the rental cost per kilometer 
+			// Tests that vehicle.getrevenue equals one per kilometer journey of 500km * the rental cost per kilometer
 			vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 2, 500));
 
             double revenue = vehicle.GetRevenue();
@@ -58,7 +58,8 @@ namespace FleetVehicleManagement.Entities.Tests
         [TestMethod()]
         public void GetRevenueTest_PerKmRental_TwoJourneys()
         {
-            vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 2, 500));
+			// Tests that vehicle.getrevenue equals one per kilometer journey of 1000 * the rental cost per kilometer
+			vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 2, 500));
             vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 2, 500));
 
             double revenue = vehicle.GetRevenue();
@@ -71,7 +72,8 @@ namespace FleetVehicleManagement.Entities.Tests
         [TestMethod()]
         public void GetRevenueTest_NoRental_OneJourney()
         {
-            vehicle.AddJourney(new Journey(Journey.Rental.None, 2, 500));
+			// tests that vehicle.getrevenue for one no rental journey equals 0
+			vehicle.AddJourney(new Journey(Journey.Rental.None, 2, 500));
 
             double revenue = vehicle.GetRevenue();
             double expectedRevenue = 0;
@@ -82,7 +84,8 @@ namespace FleetVehicleManagement.Entities.Tests
         [TestMethod()]
         public void GetRevenueTest_NoRental_TwoJourneys()
         {
-            vehicle.AddJourney(new Journey(Journey.Rental.None, 2, 500));
+			// Tests that vehicle.getrevenue of two no rent journey equals 0
+			vehicle.AddJourney(new Journey(Journey.Rental.None, 2, 500));
             vehicle.AddJourney(new Journey(Journey.Rental.None, 2, 500));
 
             double revenue = vehicle.GetRevenue();
@@ -95,7 +98,9 @@ namespace FleetVehicleManagement.Entities.Tests
         [TestMethod()]
         public void GetRevenueTest_NoRental_DailyRental_PerKmRental()
         {
-            vehicle.AddJourney(new Journey(Journey.Rental.None, 2, 500));
+			// Tests that vehicle.getrevenue of one per kilometer journey of 500KM, one daily journey of 2 days
+			// and one no rent journey equals 0 + 2 * the rental cost per day 1000 + 500 * the rental cost per kilometer
+			vehicle.AddJourney(new Journey(Journey.Rental.None, 2, 500));
             vehicle.AddJourney(new Journey(Journey.Rental.Daily, 2, 500));
             vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 2, 500));
 
@@ -110,7 +115,8 @@ namespace FleetVehicleManagement.Entities.Tests
         [TestMethod()]
         public void GetTotalKmsTest_OneJourney()
         {
-            vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 1, 500));
+			// Tests that vehicle.gettotalkms of one per km journey of 500Km equals 500
+			vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 1, 500));
 
             int totalkms = vehicle.GetTotalKms();
             int expectedKms = 500;
@@ -122,7 +128,8 @@ namespace FleetVehicleManagement.Entities.Tests
         [TestMethod()]
         public void GetTotalKmsTest_TwoJourney()
         {
-            vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 1, 250));
+			// Tests that vehicle.gettotalkms of two per km journey of 250Km equals 500
+			vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 1, 250));
             vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 1, 250));
 
             int totalkms = vehicle.GetTotalKms();
@@ -136,7 +143,8 @@ namespace FleetVehicleManagement.Entities.Tests
         [TestMethod()]
         public void GetTotalKmsTest_NoRental_DailyRental_PerKmRental()
         {
-            vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 1, 500));
+			// Tests that vehicle.gettotalkms of one per km journey of 500Km, one no rent journey and one daily journey of one day equals 500 + 250 + 250
+			vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 1, 500));
             vehicle.AddJourney(new Journey(Journey.Rental.None, 1, 250));
             vehicle.AddJourney(new Journey(Journey.Rental.Daily, 1, 250));
 
@@ -151,7 +159,8 @@ namespace FleetVehicleManagement.Entities.Tests
         [TestMethod()]
         public void GetNoActualServicesTest()
         {
-            vehicle.AddService(new Service(100));
+			// Tests that vehicle.getNoActualServices of one service at 100 and one service at 200 equals 2
+			vehicle.AddService(new Service(100));
             vehicle.AddService(new Service(200));
 
             int noServices = vehicle.GetNoActualServices();
@@ -162,7 +171,9 @@ namespace FleetVehicleManagement.Entities.Tests
         [TestMethod()]
         public void GetNoExpectedServicesTest()
         {
-            vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 1, 500));
+			// Tests that vehicle.gettotalkms / kmBetweenService of one per km journey of 500Km, one no rent journey and one daily journey of one day
+			// equals vehicle.getNoExpectedServices
+			vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 1, 500));
             vehicle.AddJourney(new Journey(Journey.Rental.None, 1, 250));
             vehicle.AddJourney(new Journey(Journey.Rental.Daily, 1, 255));
 
@@ -179,6 +190,8 @@ namespace FleetVehicleManagement.Entities.Tests
         [TestMethod()]
         public void GetFuelEconomyTest()
         {
+			// Tests that vehicle.getfueleconomy of one per km journey of 500km, one no rent journey and one 1 day daily journey
+			// and three fuel purchases 2 of 25 one of 50 equals 10
             vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 1, 500));
             vehicle.AddJourney(new Journey(Journey.Rental.None, 1, 250));
             vehicle.AddJourney(new Journey(Journey.Rental.Daily, 1, 250));
@@ -194,7 +207,8 @@ namespace FleetVehicleManagement.Entities.Tests
         [TestMethod()]
         public void GetLatestServiceOdometerReadingTest()
         {
-            vehicle.AddService(new Service(100));
+			// Tests that vehicle.getodometerreading of three services one at 100, 200, 300 equals 300
+			vehicle.AddService(new Service(100));
             vehicle.AddService(new Service(200));
             vehicle.AddService(new Service(300));
 
@@ -205,7 +219,8 @@ namespace FleetVehicleManagement.Entities.Tests
         [TestMethod()]
         public void RequiresServiceTest_DoesNotRequireService()
         {
-            vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 1, 25));
+			// Tests that vehicle.requiresService of two services one at 100 and 200 and one no rent journey, 1 day daily journey and one perKm of 25km journey is false
+			vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 1, 25));
             vehicle.AddJourney(new Journey(Journey.Rental.None, 1, 100));
             vehicle.AddJourney(new Journey(Journey.Rental.Daily, 1, 100));
             vehicle.AddService(new Service(100));
@@ -219,7 +234,8 @@ namespace FleetVehicleManagement.Entities.Tests
         [TestMethod()]
         public void RequiresServiceTest_DoesRequireService()
         {
-            vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 1, 100));
+			// Tests that vehicle.requiresService of two services one at 100 and 200 and one no rent journey, 1 day daily journey and one perKm of 100km journey is true
+			vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 1, 100));
             vehicle.AddJourney(new Journey(Journey.Rental.None, 1, 100));
             vehicle.AddJourney(new Journey(Journey.Rental.Daily, 1, 100));
             vehicle.AddService(new Service(100));

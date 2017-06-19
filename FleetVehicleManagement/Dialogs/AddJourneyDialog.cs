@@ -13,11 +13,13 @@ namespace FleetVehicleManagement.Dialogs
 {
     public partial class AddJourneyDialog : Form
     {
-        public string RegistrationNumber {
+		// sets the title label on the the form to include a space and the value being passed in as a string
+		public string RegistrationNumber {
             set { lbl_Title.Text += " " + value.ToString(); }
         }
 
-        public int NumberDays
+		// declares a integer (result) and trys to parse txt_NoDays to result and returns it
+		public int NumberDays
         {
             get
             {
@@ -27,7 +29,8 @@ namespace FleetVehicleManagement.Dialogs
             }
         }
 
-        public int KmsTravelled
+		// declares a integer (result) and trys to parse txt_kmsTravelled to result and returns it
+		public int KmsTravelled
         {
             get
             {
@@ -54,13 +57,15 @@ namespace FleetVehicleManagement.Dialogs
             cb_RentalType.DataSource = Enum.GetValues(typeof(Journey.Rental));
         }
 
-        private void btn_Save_Click(object sender, EventArgs e)
+		// sets the dialog result to ok and closes the form
+		private void btn_Save_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
 
-        private void btn_Cancel_Click(object sender, EventArgs e)
+		// sets the dialog result to cancel and closes the form
+		private void btn_Cancel_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();

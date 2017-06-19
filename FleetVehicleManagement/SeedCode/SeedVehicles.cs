@@ -16,6 +16,7 @@ namespace FleetVehicleManagement.SeedCode
 
         private void CreateVehicles()
         {
+			// creates 5 vehicles each with its respective journey, fuel purchase and service then adds them to the vehicleList
             Vehicle v1 = new Vehicle(2015,"Honda", "CR-V", "1ABC-001");
 
             v1.AddJourney(new Journey(Journey.Rental.Daily, 3, 450));

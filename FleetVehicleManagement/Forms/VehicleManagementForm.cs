@@ -16,22 +16,25 @@ namespace FleetVehicleManagement.Forms
         {
             InitializeComponent();
 
+			// sets output text box enabled and readonly to true
             txt_OutPut.Enabled = true;
             txt_OutPut.ReadOnly = true;
 
+			// declares vehicleslist and calls createvehicles and populateoutputs
             VehiclesList = new List<Entities.Vehicle>();
             CreateVehicles();
             populateOutputs();
 
         }
 
-
+		// populates vehiclegridview and output text box
         private void populateOutputs()
         {
             populateVehicleGridView();
             populateOutputTextBox();
         }
 
+		// 
         private void populateVehicleGridView()
         {
             VehicleGridView.AutoGenerateColumns = false;
@@ -42,6 +45,7 @@ namespace FleetVehicleManagement.Forms
             VehicleGridView.Refresh();
 
         }
+
 
         private void populateOutputTextBox()
         {

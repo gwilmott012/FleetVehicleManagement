@@ -8,6 +8,7 @@ namespace FleetVehicleManagement.Entities.Tests
         Vehicle vehicle;
 
         [TestInitialize]
+		// upon running tests this will create a new vehicle for any test
         public void TestInitialise()
         {
             vehicle = new Vehicle();
@@ -16,6 +17,7 @@ namespace FleetVehicleManagement.Entities.Tests
         [TestMethod()]
         public void GetRevenueTest_DailyRental_OneJourney()
         {
+			// Tests that vehicle.getrevenue equals a daily journey of two days * the rental cost per day
             vehicle.AddJourney(new Journey(Journey.Rental.Daily, 2, 500));
 
             double revenue = vehicle.GetRevenue();
@@ -29,6 +31,7 @@ namespace FleetVehicleManagement.Entities.Tests
         [TestMethod()]
         public void GetRevenueTest_DailyRental_TwoJourneys()
         {
+			// tests that two daily journeys of one day equals two * the rental cost per day
             vehicle.AddJourney(new Journey(Journey.Rental.Daily, 1, 500));
             vehicle.AddJourney(new Journey(Journey.Rental.Daily, 1, 500));
 
@@ -43,7 +46,8 @@ namespace FleetVehicleManagement.Entities.Tests
         [TestMethod()]
         public void GetRevenueTest_PerKmRental_OneJourney()
         {
-            vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 2, 500));
+			// tests that one per kilometer journey of 500km equals 500 * the rental cost per kilometer 
+			vehicle.AddJourney(new Journey(Journey.Rental.PerKM, 2, 500));
 
             double revenue = vehicle.GetRevenue();
             double expectedRevenue = 500 * Constants.Constants.rentalCostPerKm;
